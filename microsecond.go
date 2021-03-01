@@ -26,3 +26,8 @@ func (m Microsecond) Add(d time.Duration) Microsecond {
 func (m Microsecond) Sub(t Microsecond) time.Duration {
 	return time.Duration(m-t) * time.Microsecond
 }
+
+// Int64 int64 microsecond
+func (m Microsecond) Int64() int64 {
+	return int64(m)
+}

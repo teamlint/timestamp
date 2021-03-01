@@ -26,3 +26,8 @@ func (n Nanosecond) Add(d time.Duration) Nanosecond {
 func (n Nanosecond) Sub(t Nanosecond) time.Duration {
 	return time.Duration(n-t) * time.Nanosecond
 }
+
+// Int64 int64 Nanosecond
+func (m Nanosecond) Int64() int64 {
+	return int64(m)
+}
