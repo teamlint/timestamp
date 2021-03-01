@@ -1,6 +1,9 @@
 package timestamp
 
-import "time"
+import (
+	"strconv"
+	"time"
+)
 
 // Microsecond is the Unix timestamp, the number of microseconds
 // elapsed since January 1, 1970 UTC.
@@ -30,4 +33,18 @@ func (m Microsecond) Sub(t Microsecond) time.Duration {
 // Int64 int64 microsecond
 func (m Microsecond) Int64() int64 {
 	return int64(m)
+}
+
+// String string microsecond
+func (m Microsecond) String() string {
+	return strconv.FormatInt(int64(m), 10)
+}
+
+// Format format microsecond
+func (m Microsecond) Format(layout ...string) string {
+	l := RFC3339MicroZ
+	if len(l) > 0 {
+		l = layout[0]
+	}
+	return m.ToTime().Format(l)
 }

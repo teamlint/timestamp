@@ -1,6 +1,9 @@
 package timestamp
 
-import "time"
+import (
+	"strconv"
+	"time"
+)
 
 // Nanosecond is the Unix timestamp, the number of nanoseconds
 // elapsed since January 1, 1970 UTC.
@@ -30,4 +33,18 @@ func (n Nanosecond) Sub(t Nanosecond) time.Duration {
 // Int64 int64 Nanosecond
 func (m Nanosecond) Int64() int64 {
 	return int64(m)
+}
+
+// String string nanosecond
+func (m Nanosecond) String() string {
+	return strconv.FormatInt(int64(m), 10)
+}
+
+// Format format nanosecond
+func (m Nanosecond) Format(layout ...string) string {
+	l := RFC3339NanoZ
+	if len(l) > 0 {
+		l = layout[0]
+	}
+	return m.ToTime().Format(l)
 }

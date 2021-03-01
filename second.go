@@ -1,6 +1,9 @@
 package timestamp
 
-import "time"
+import (
+	"strconv"
+	"time"
+)
 
 // Second is the Unix timestamp, the number of seconds
 // elapsed since January 1, 1970 UTC.
@@ -30,4 +33,18 @@ func (s Second) Sub(t Second) time.Duration {
 // Int64 int64 second
 func (m Second) Int64() int64 {
 	return int64(m)
+}
+
+// String string second
+func (m Second) String() string {
+	return strconv.FormatInt(int64(m), 10)
+}
+
+// Format format second
+func (m Second) Format(layout ...string) string {
+	l := RFC3339Z
+	if len(l) > 0 {
+		l = layout[0]
+	}
+	return m.ToTime().Format(l)
 }
